@@ -25,6 +25,68 @@ interface OpenAlexWork {
     raw_author_name?: string;
   }>;
   abstract_inverted_index?: Record<string, number[]> | null;
+  biblio?: {
+    volume?: string | null;
+    issue?: string | null;
+    first_page?: string | null;
+    last_page?: string | null;
+  } | null;
+}
+
+// Classify an OpenAlex work into one of our publication types.
+// Detection priority: Conference Abstract > Preprint > Review/Meta-analysis > etc.
+function classifyType(w: OpenAlexWork): string {
+  const oaType = (w.type || "").toLowerCase();
+  const biblio = w.biblio || {};
+  const issue = String(biblio.issue || "").toLowerCase();
+  const venue = (w.primary_location?.source?.display_name || "").toLowerCase();
+  const title = (w.title || "").toLowerCase();
+  const venueType = (w.primary_location?.source?.type || "").toLowerCase();
+
+  // Supplement issue is the strongest conference abstract marker
+  const isSupplement =
+    issue.includes("supp") ||
+    issue.includes("_su") ||
+    /^s\d+$/.test(issue) ||
+    issue.startsWith("sup");
+
+  // Title contains explicit poster/session IDs like (P4-5.01) or (S12.001)
+  const hasPosterId = /\([SP]\d+[-.]\d+/.test(w.title || "");
+
+  if (isSupplement || hasPosterId) return "Conference Abstract";
+
+  if (
+    oaType === "preprint" ||
+    venueType === "repository" ||
+    venue.includes("biorxiv") ||
+    venue.includes("medrxiv") ||
+    venue.includes("research square") ||
+    venue.includes("preprints.org") ||
+    venue.includes("chemrxiv")
+  ) {
+    return "Preprint";
+  }
+
+  if (
+    oaType === "review" ||
+    title.includes("systematic review") ||
+    title.includes("meta-analy") ||
+    title.includes("meta analy") ||
+    title.includes("umbrella review")
+  ) {
+    return "Review / Meta-analysis";
+  }
+
+  if (oaType === "editorial" || title.startsWith("comment on") || title.startsWith("reply")) {
+    return "Editorial / Commentary";
+  }
+
+  if (oaType === "letter" || title.includes("letter to")) return "Letter";
+  if (oaType === "book-chapter") return "Book Chapter";
+  if (oaType === "erratum" || title.includes("erratum") || title.startsWith("correction")) return "Erratum";
+  if (oaType === "article") return "Research Article";
+  if (oaType === "paratext") return "Other";
+  return "Other";
 }
 
 function reconstructAbstract(idx: Record<string, number[]> | null | undefined): string | null {
@@ -54,7 +116,7 @@ function formatAuthors(authorships: OpenAlexWork['authorships']): string {
 
 function shouldSkip(w: OpenAlexWork): string | null {
   const t = (w.type || '').toLowerCase();
-  if (t === 'dataset' || t === 'software' || t === 'erratum' || t === 'editorial') {
+  if (t === 'dataset' || t === 'software') {
     return `type=${t}`;
   }
   const venue = (w.primary_location?.source?.display_name || '').toLowerCase();
@@ -106,7 +168,7 @@ Deno.serve(async (req) => {
   try {
     let cursor: string | null = '*';
     while (cursor) {
-      const url = `https://api.openalex.org/works?filter=author.id:${OPENALEX_AUTHOR_ID}&per-page=100&cursor=${cursor}&select=id,doi,title,display_name,publication_year,type,ids,primary_location,authorships,abstract_inverted_index`;
+      const url = `https://api.openalex.org/works?filter=author.id:${OPENALEX_AUTHOR_ID}&per-page=100&cursor=${cursor}&select=id,doi,title,display_name,publication_year,type,ids,primary_location,authorships,abstract_inverted_index,biblio`;
       const resp = await fetch(url, { headers: { 'User-Agent': USER_AGENT } });
       if (!resp.ok) throw new Error(`OpenAlex ${resp.status}: ${await resp.text()}`);
       const data = await resp.json();
@@ -120,8 +182,7 @@ Deno.serve(async (req) => {
         const oaId = (w.id || '').replace('https://openalex.org/', '');
         const doi = (w.doi || '').replace('https://doi.org/', '') || null;
         const pmid = (w.ids?.pmid || '').replace('https://pubmed.ncbi.nlm.nih.gov/', '') || null;
-        const venueType = w.primary_location?.source?.type || '';
-        const isPreprint = (w.type === 'preprint') || venueType === 'repository';
+        const classifiedType = classifyType(w);
 
         const record = {
           openalex_id: oaId,
@@ -130,7 +191,7 @@ Deno.serve(async (req) => {
           title: (w.title || w.display_name || '').slice(0, 1000),
           journal: w.primary_location?.source?.display_name || null,
           year: String(w.publication_year || ''),
-          type: isPreprint ? 'Preprint' : 'Research Article',
+          type: classifiedType,
           impact: 'Medium Impact',
           authors: formatAuthors(w.authorships),
           abstract: reconstructAbstract(w.abstract_inverted_index),
