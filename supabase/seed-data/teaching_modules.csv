@@ -1,0 +1,10 @@
+id,title,description,display_order,visible,created_at,updated_at
+76a94837-f06d-417f-bb96-dce70b758bf4,Course 0: Introduction to Clinical Research,"",0,t,2025-10-20 01:38:55.980248+00,2025-10-25 21:19:20.944286+00
+ec289bad-38a5-4f1d-9db6-939ab1e573e6,Course 1: Basics of Clinical Research Methods,"",1,t,2025-10-25 21:19:10.952115+00,2025-10-25 21:19:10.952115+00
+53c24d1b-916b-4813-8463-7b829ea51f4e,Course 2: Basics of Medical Statistics (using Jamovi),"",2,t,2025-10-25 21:19:34.442978+00,2025-10-25 21:19:34.442978+00
+36945db6-ff57-4907-a1b6-4dfa5c6aaa3a,Course 3: Sample Size Calculation in Clinical Studies,"",3,t,2025-10-25 21:19:45.378911+00,2025-10-25 21:19:45.378911+00
+8b7b9a26-42e4-4c05-9a8c-c7b77d0d17d3,Course 4: Scientific Writing & Academic Publishing,"",4,t,2025-10-25 21:19:57.363676+00,2025-10-25 21:19:57.363676+00
+35c1d703-c075-4f61-8b21-43ae07bc3268,Course 5: Systematic Literature Reviews and Meta-analysis,"",5,t,2025-10-25 21:20:10.548893+00,2025-10-25 21:20:10.548893+00
+5441ee79-dd5b-49fd-962d-75d3789d25e1,Course 6: GRADE Framework to Assess the Quality of Evidence,"",6,t,2025-10-25 21:21:22.506316+00,2025-10-25 21:21:22.506316+00
+e3892b64-e01f-4a1e-afc8-d315e5d2ba8b,Course: How to Peer-Review A Research Paper,"",7,t,2025-10-25 21:21:43.341126+00,2025-10-25 21:21:43.341126+00
+1587c412-0534-4784-af43-9562d2e87594,Course: Basics of Neuroimaging (MRI) preprocessing and analysis using MATLAB,"",8,t,2025-10-25 21:22:50.121736+00,2025-10-25 21:22:50.121736+00
