@@ -38,9 +38,9 @@ const HeroSection = () => {
   };
 
   const stats = [
-    { icon: BookOpen, label: "Publications", value: "100+", targetNumber: 100, suffix: "+" },
-    { icon: GraduationCap, label: "Citations", value: "7,000+", targetNumber: 7000, suffix: "+" },
-    { icon: Award, label: "H-index", value: "40+", targetNumber: 40, suffix: "+" },
+    { icon: BookOpen, label: "Publications", value: "280+", targetNumber: 280, suffix: "+" },
+    { icon: GraduationCap, label: "Citations", value: "8,300+", targetNumber: 8300, suffix: "+" },
+    { icon: Award, label: "H-index", value: "43", targetNumber: 43, suffix: "" },
     { icon: Users, label: "Trainees", value: "30,000+", targetNumber: 30000, suffix: "+" }
   ];
 
