@@ -37,10 +37,22 @@ const TOPICS: { label: string; short?: string; pattern: RegExp; weight?: number 
   { label: "EEG / Electrophysiology", short: "EEG", pattern: /\bEEG\b|electroencephalo/i },
   { label: "MRI / Neuroimaging", short: "MRI", pattern: /\bMRI\b|magnetic\s+resonance|neuroimag/i },
   { label: "Biomarkers", pattern: /biomarker/i },
-  { label: "Meta-analysis", pattern: /meta[\s-]analy|systematic\s+review/i },
   { label: "Machine Learning", pattern: /machine\s+learning|deep\s+learning|neural\s+network|ResNet|artificial\s+intelligence/i },
   { label: "Clinical Trials", pattern: /clinical\s+trial|randomized\s+control|\bRCT\b/i },
 ];
+
+// Type priority for sorting — primary research (Research Article + Preprint) ranks higher
+const TYPE_PRIORITY: Record<string, number> = {
+  "Research Article": 1,
+  Preprint: 2,
+  "Book Chapter": 3,
+  "Review / Meta-analysis": 4,
+  "Conference Abstract": 5,
+  Letter: 6,
+  "Editorial / Commentary": 7,
+  Erratum: 8,
+  Other: 9,
+};
 
 // Type-specific badge component (colored by publication type)
 const TYPE_STYLES: Record<string, { label: string; classes: string }> = {
@@ -180,9 +192,13 @@ const PublicationsSection = () => {
       );
     }
 
-    // When filtering or showing all, sort by year desc; otherwise keep curated display_order
+    // When filtering or showing all, sort by: type priority (primary research first), then year desc.
+    // Default curated view uses the explicit display_order set in DB.
     if (showAll || selectedTopic || search) {
       list = [...list].sort((a, b) => {
+        const aP = TYPE_PRIORITY[a.type || "Other"] ?? 9;
+        const bP = TYPE_PRIORITY[b.type || "Other"] ?? 9;
+        if (aP !== bP) return aP - bP;
         const ay = parseInt(a.year || "0", 10) || 0;
         const by = parseInt(b.year || "0", 10) || 0;
         if (by !== ay) return by - ay;
