@@ -42,6 +42,59 @@ const TOPICS: { label: string; short?: string; pattern: RegExp; weight?: number 
   { label: "Clinical Trials", pattern: /clinical\s+trial|randomized\s+control|\bRCT\b/i },
 ];
 
+// Type-specific badge component (colored by publication type)
+const TYPE_STYLES: Record<string, { label: string; classes: string }> = {
+  "Research Article": {
+    label: "Research Article",
+    classes: "bg-emerald-100 text-emerald-800 border border-emerald-200",
+  },
+  "Review / Meta-analysis": {
+    label: "Review",
+    classes: "bg-violet-100 text-violet-800 border border-violet-200",
+  },
+  Preprint: {
+    label: "Preprint",
+    classes: "bg-amber-100 text-amber-800 border border-amber-200",
+  },
+  "Conference Abstract": {
+    label: "Conf. Abstract",
+    classes: "bg-orange-100 text-orange-800 border border-orange-300",
+  },
+  "Book Chapter": {
+    label: "Book Chapter",
+    classes: "bg-blue-100 text-blue-800 border border-blue-200",
+  },
+  Letter: {
+    label: "Letter",
+    classes: "bg-slate-100 text-slate-700 border border-slate-200",
+  },
+  "Editorial / Commentary": {
+    label: "Editorial",
+    classes: "bg-slate-100 text-slate-700 border border-slate-200",
+  },
+  Erratum: {
+    label: "Erratum",
+    classes: "bg-rose-100 text-rose-700 border border-rose-200",
+  },
+  Other: {
+    label: "Other",
+    classes: "bg-slate-100 text-slate-700 border border-slate-200",
+  },
+};
+
+const TypeBadge = ({ type }: { type: string | null }) => {
+  if (!type) return null;
+  const style = TYPE_STYLES[type] || TYPE_STYLES.Other;
+  return (
+    <span
+      className={`flex-shrink-0 text-xs font-bold uppercase tracking-wider px-2 py-1 rounded ${style.classes}`}
+      title={type}
+    >
+      {style.label}
+    </span>
+  );
+};
+
 const PublicationsSection = () => {
   const [publications, setPublications] = useState<Publication[]>([]);
   const [loading, setLoading] = useState(true);
@@ -364,11 +417,7 @@ const PublicationsSection = () => {
                       <div className="text-lg font-semibold text-primary leading-tight group-hover:text-primary-glow transition-colors flex-1">
                         {pub.title}
                       </div>
-                      {pub.type === "Preprint" && (
-                        <span className="flex-shrink-0 text-xs font-bold uppercase tracking-wider bg-amber-100 text-amber-800 px-2 py-1 rounded">
-                          Preprint
-                        </span>
-                      )}
+                      <TypeBadge type={pub.type} />
                     </div>
 
                     {pub.authors && (
