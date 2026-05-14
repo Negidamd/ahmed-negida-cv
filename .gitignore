@@ -35,3 +35,4 @@ dist-ssr
 # Deployment build artifacts
 .vercel
 .netlify
+.gstack/
