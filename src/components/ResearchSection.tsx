@@ -129,7 +129,8 @@ const ResearchSection = () => {
           </div>
         </div>
 
-        {/* Current Research Projects */}
+        {/* Current Research Projects — only render when there are any */}
+        {!loading && projects.length === 0 ? null : (
         <div>
           <h3 className="text-2xl lg:text-3xl font-display font-bold text-primary mb-10 text-center">
             Current Research Projects
@@ -173,6 +174,7 @@ const ResearchSection = () => {
             </div>
           )}
         </div>
+        )}
       </div>
     </section>
   );

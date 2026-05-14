@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import heroProfile from "@/assets/ahmed-negida-profile.png";
+import heroProfile from "@/assets/ahmed-negida-profile-optimized.jpg";
 import { BookOpen, GraduationCap, Users, Award } from "lucide-react";
 import { useCounterAnimation } from "@/hooks/use-counter-animation";
 
@@ -97,19 +97,18 @@ const HeroSection = () => {
               
               <div className="space-y-5 mb-8 text-white/90 text-base lg:text-lg leading-relaxed font-normal max-w-3xl">
                 <p className="leading-loose">
-                  Dr. Ahmed Negida is a postdoctoral scholar at the Virginia Commonwealth University 
-                  Department of Neurology, where he conducts translational research on neurodegenerative 
-                  diseases. His work combines multimodal brain imaging—including structural T1 and T2 
-                  FLAIR MRI, functional MRI, diffusion MRI, and EEG—with advanced data science techniques 
-                  such as machine learning, deep learning, and artificial intelligence to uncover 
-                  biomarkers and therapeutic targets for personalized patient care.
+                  Dr. Ahmed Negida is a physician-scientist at Virginia Commonwealth University's
+                  Parkinson's and Movement Disorders Center, where he conducts translational research
+                  on neurodegenerative diseases. He integrates multimodal brain imaging—structural
+                  T1 and T2 FLAIR MRI, functional MRI, diffusion MRI, and EEG—with machine learning
+                  and fluid biomarkers to identify subtypes of Parkinson's disease, Lewy body dementia,
+                  and Alzheimer's, and to optimize patient selection for disease-modifying trials.
                 </p>
                 <p className="leading-loose">
-                  Beyond his research, Dr. Negida is the founder of Negida Academy LLC, established in 
-                  2014 in Egypt. The academy has become the largest clinical research training platform 
-                  in the Middle East and North Africa, empowering more than 30,000 medical students, 
-                  trainees, and physicians with high-quality education in scientific research and 
-                  academic writing.
+                  Beyond his research, Dr. Negida founded Negida Academy in 2014—now the largest
+                  clinical research training platform in MENA, with 30,000+ trainees across 30+
+                  countries—and co-founded the Global Neurosciences (GNS) research collaborative
+                  hosted by OHSU Neurological Surgery.
                 </p>
               </div>
               

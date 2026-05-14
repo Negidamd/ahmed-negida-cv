@@ -9,7 +9,7 @@ const timelineData = [
     institution: "Zagazig University",
     location: "Zagazig, Egypt",
     description: "College of Human Medicine. MBBCh equivalent to MD in the United States.",
-    logoUrl: "https://assets.softr-files.com/applications/ee0b8793-88fb-46dc-80f5-1d9a3a387395/assets/b32ecaeb-0b02-4385-84e3-3282da1f70f2.png"
+    logoUrl: "https://iqstwezzihmeerjuwsbk.supabase.co/storage/v1/object/public/site-assets/institution-4.png"
   },
   {
     year: "2019",
@@ -17,7 +17,7 @@ const timelineData = [
     institution: "Bahcesehir University",
     location: "Istanbul, Turkey",
     description: "Studying Deep Brain Stimulation in Parkinson's and Huntington's disease patients.",
-    logoUrl: "https://assets.softr-files.com/applications/ee0b8793-88fb-46dc-80f5-1d9a3a387395/assets/d0a7baab-612d-4aa9-bb97-3b87996a3aa9.webp"
+    logoUrl: "https://iqstwezzihmeerjuwsbk.supabase.co/storage/v1/object/public/site-assets/institution-6.webp"
   },
   {
     year: "2020 - 2022",
@@ -25,7 +25,7 @@ const timelineData = [
     institution: "University of Portsmouth",
     location: "United Kingdom",
     description: "Thesis: 'The HOPE and the HYPE in Parkinson's Disease Treatments.'",
-    logoUrl: "https://assets.softr-files.com/applications/ee0b8793-88fb-46dc-80f5-1d9a3a387395/assets/d06cda17-5aaa-468f-bcb7-b0e9ebf5aef8.png"
+    logoUrl: "https://iqstwezzihmeerjuwsbk.supabase.co/storage/v1/object/public/site-assets/institution-5.png"
   },
   {
     year: "2021 - 2023",
@@ -33,7 +33,7 @@ const timelineData = [
     institution: "Harvard Medical School",
     location: "Boston, MA",
     description: "Global Neurosurgery Initiative studying health disparities in neurological diseases.",
-    logoUrl: "https://assets.softr-files.com/applications/ee0b8793-88fb-46dc-80f5-1d9a3a387395/assets/9f3d45f6-09cd-4f6b-854a-4ba7b8e3517d.png"
+    logoUrl: "https://iqstwezzihmeerjuwsbk.supabase.co/storage/v1/object/public/site-assets/institution-3.png"
   },
   {
     year: "2023 - Present",
@@ -41,7 +41,7 @@ const timelineData = [
     institution: "Virginia Commonwealth University",
     location: "Richmond, VA",
     description: "Using advanced multimodal brain imaging to study neurodegenerative diseases.",
-    logoUrl: "https://assets.softr-files.com/applications/ee0b8793-88fb-46dc-80f5-1d9a3a387395/assets/76ce2dee-8b66-4ee4-8dd2-3a641e99b170.webp"
+    logoUrl: "https://iqstwezzihmeerjuwsbk.supabase.co/storage/v1/object/public/site-assets/institution-1.webp"
   },
   {
     year: "2025",
@@ -49,7 +49,7 @@ const timelineData = [
     institution: "Alzheimer's Association & NIA/NIH",
     location: "San Diego, CA",
     description: "Advanced training in Alzheimer's disease and related dementias research.",
-    logoUrl: "https://assets.softr-files.com/applications/ee0b8793-88fb-46dc-80f5-1d9a3a387395/assets/7a1e3e71-4701-4f51-a4cd-4c884aec28cf.png"
+    logoUrl: "https://iqstwezzihmeerjuwsbk.supabase.co/storage/v1/object/public/site-assets/institution-2.png"
   }
 ].sort((a, b) => {
   // Extract start years for sorting - newest first

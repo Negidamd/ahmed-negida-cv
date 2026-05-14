@@ -151,7 +151,7 @@ const TeachingSection = () => {
             <div className="text-center">
               <Button 
                 size="lg" 
-                onClick={() => window.open('#', '_blank')}
+                onClick={() => window.open('https://courses.negida.com/store', '_blank')}
                 className="gap-2 px-8 py-6 text-base font-semibold"
               >
                 <ExternalLink className="w-5 h-5" />
