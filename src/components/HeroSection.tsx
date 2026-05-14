@@ -97,12 +97,12 @@ const HeroSection = () => {
               
               <div className="space-y-5 mb-8 text-white/90 text-base lg:text-lg leading-relaxed font-normal max-w-3xl">
                 <p className="leading-loose">
-                  Dr. Ahmed Negida is a physician-scientist at Virginia Commonwealth University's
-                  Parkinson's and Movement Disorders Center, where he conducts translational research
-                  on neurodegenerative diseases. He integrates multimodal brain imaging—structural
-                  T1 and T2 FLAIR MRI, functional MRI, diffusion MRI, and EEG—with machine learning
-                  and fluid biomarkers to identify subtypes of Parkinson's disease, Lewy body dementia,
-                  and Alzheimer's, and to optimize patient selection for disease-modifying trials.
+                  Dr. Ahmed Negida is a translational research scientist and postdoctoral scholar
+                  at Virginia Commonwealth University's Parkinson's and Movement Disorders Center.
+                  He integrates multimodal brain imaging—structural T1 and T2 FLAIR MRI, functional
+                  MRI, diffusion MRI, and EEG—with machine learning and fluid biomarkers to identify
+                  subtypes of Parkinson's disease, Lewy body dementia, and Alzheimer's, and to
+                  optimize patient selection for disease-modifying clinical trials.
                 </p>
                 <p className="leading-loose">
                   Beyond his research, Dr. Negida founded Negida Academy in 2014—now the largest
